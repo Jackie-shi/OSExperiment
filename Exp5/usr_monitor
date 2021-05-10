@@ -1,0 +1,18 @@
+#!/bin/bash
+if [ $# != 1 ]; # 判断是否仅传入了一个参数
+then
+  echo "Usage: usr_monitor username"
+  exit
+fi
+user_input=$1 # 获取参数
+echo "You will monitor [${user_input}]"
+user_name=$(who | awk '{print $1}') # 获取已经登陆的用户
+echo -e "Current user list is:\n${user_name}"
+compare=$(echo $user_name | grep "${user_input}")
+while [ "${compare}" == "" ]; do
+    echo "waiting user [${user_input}] ..."
+    sleep 5
+    user_name=$(who | awk '{print $1}')
+    compare=$(echo $user_name | grep "${user_input}")
+done
+echo "[${user_input}] is log on"

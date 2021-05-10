@@ -1,1 +1,1 @@
-/Library/Developer/CommandLineTools/usr/bin/cc -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/opt/ncurses/lib CMakeFiles/OSExperiment.dir/Exp3/exp3.c.o  -o OSExperiment 
+/Library/Developer/CommandLineTools/usr/bin/cc -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/opt/ncurses/lib CMakeFiles/OSExperiment.dir/Exp3/exp3.c.o CMakeFiles/OSExperiment.dir/Exp6/exp5.c.o  -o OSExperiment 
