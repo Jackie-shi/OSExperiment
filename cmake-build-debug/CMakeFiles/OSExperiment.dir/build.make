@@ -57,27 +57,27 @@ include CMakeFiles/OSExperiment.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/OSExperiment.dir/flags.make
 
-CMakeFiles/OSExperiment.dir/Exp1/exp1.c.o: CMakeFiles/OSExperiment.dir/flags.make
-CMakeFiles/OSExperiment.dir/Exp1/exp1.c.o: ../Exp1/exp1.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/zhangyunchen/CLionProjects/OSExperiment/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/OSExperiment.dir/Exp1/exp1.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/OSExperiment.dir/Exp1/exp1.c.o   -c /Users/zhangyunchen/CLionProjects/OSExperiment/Exp1/exp1.c
+CMakeFiles/OSExperiment.dir/Exp2/exp2.c.o: CMakeFiles/OSExperiment.dir/flags.make
+CMakeFiles/OSExperiment.dir/Exp2/exp2.c.o: ../Exp2/exp2.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/zhangyunchen/CLionProjects/OSExperiment/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/OSExperiment.dir/Exp2/exp2.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/OSExperiment.dir/Exp2/exp2.c.o   -c /Users/zhangyunchen/CLionProjects/OSExperiment/Exp2/exp2.c
 
-CMakeFiles/OSExperiment.dir/Exp1/exp1.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/OSExperiment.dir/Exp1/exp1.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhangyunchen/CLionProjects/OSExperiment/Exp1/exp1.c > CMakeFiles/OSExperiment.dir/Exp1/exp1.c.i
+CMakeFiles/OSExperiment.dir/Exp2/exp2.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/OSExperiment.dir/Exp2/exp2.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhangyunchen/CLionProjects/OSExperiment/Exp2/exp2.c > CMakeFiles/OSExperiment.dir/Exp2/exp2.c.i
 
-CMakeFiles/OSExperiment.dir/Exp1/exp1.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/OSExperiment.dir/Exp1/exp1.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhangyunchen/CLionProjects/OSExperiment/Exp1/exp1.c -o CMakeFiles/OSExperiment.dir/Exp1/exp1.c.s
+CMakeFiles/OSExperiment.dir/Exp2/exp2.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/OSExperiment.dir/Exp2/exp2.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhangyunchen/CLionProjects/OSExperiment/Exp2/exp2.c -o CMakeFiles/OSExperiment.dir/Exp2/exp2.c.s
 
 # Object files for target OSExperiment
 OSExperiment_OBJECTS = \
-"CMakeFiles/OSExperiment.dir/Exp1/exp1.c.o"
+"CMakeFiles/OSExperiment.dir/Exp2/exp2.c.o"
 
 # External object files for target OSExperiment
 OSExperiment_EXTERNAL_OBJECTS =
 
-OSExperiment: CMakeFiles/OSExperiment.dir/Exp1/exp1.c.o
+OSExperiment: CMakeFiles/OSExperiment.dir/Exp2/exp2.c.o
 OSExperiment: CMakeFiles/OSExperiment.dir/build.make
 OSExperiment: CMakeFiles/OSExperiment.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/zhangyunchen/CLionProjects/OSExperiment/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable OSExperiment"

@@ -123,32 +123,32 @@ OSExperiment/fast:
 	$(MAKE) -f CMakeFiles/OSExperiment.dir/build.make CMakeFiles/OSExperiment.dir/build
 .PHONY : OSExperiment/fast
 
-Exp1/exp1.o: Exp1/exp1.c.o
+Exp2/exp2.o: Exp2/exp2.c.o
 
-.PHONY : Exp1/exp1.o
+.PHONY : Exp2/exp2.o
 
 # target to build an object file
-Exp1/exp1.c.o:
-	$(MAKE) -f CMakeFiles/OSExperiment.dir/build.make CMakeFiles/OSExperiment.dir/Exp1/exp1.c.o
-.PHONY : Exp1/exp1.c.o
+Exp2/exp2.c.o:
+	$(MAKE) -f CMakeFiles/OSExperiment.dir/build.make CMakeFiles/OSExperiment.dir/Exp2/exp2.c.o
+.PHONY : Exp2/exp2.c.o
 
-Exp1/exp1.i: Exp1/exp1.c.i
+Exp2/exp2.i: Exp2/exp2.c.i
 
-.PHONY : Exp1/exp1.i
+.PHONY : Exp2/exp2.i
 
 # target to preprocess a source file
-Exp1/exp1.c.i:
-	$(MAKE) -f CMakeFiles/OSExperiment.dir/build.make CMakeFiles/OSExperiment.dir/Exp1/exp1.c.i
-.PHONY : Exp1/exp1.c.i
+Exp2/exp2.c.i:
+	$(MAKE) -f CMakeFiles/OSExperiment.dir/build.make CMakeFiles/OSExperiment.dir/Exp2/exp2.c.i
+.PHONY : Exp2/exp2.c.i
 
-Exp1/exp1.s: Exp1/exp1.c.s
+Exp2/exp2.s: Exp2/exp2.c.s
 
-.PHONY : Exp1/exp1.s
+.PHONY : Exp2/exp2.s
 
 # target to generate assembly for a file
-Exp1/exp1.c.s:
-	$(MAKE) -f CMakeFiles/OSExperiment.dir/build.make CMakeFiles/OSExperiment.dir/Exp1/exp1.c.s
-.PHONY : Exp1/exp1.c.s
+Exp2/exp2.c.s:
+	$(MAKE) -f CMakeFiles/OSExperiment.dir/build.make CMakeFiles/OSExperiment.dir/Exp2/exp2.c.s
+.PHONY : Exp2/exp2.c.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... OSExperiment"
-	@echo "... Exp1/exp1.o"
-	@echo "... Exp1/exp1.i"
-	@echo "... Exp1/exp1.s"
+	@echo "... Exp2/exp2.o"
+	@echo "... Exp2/exp2.i"
+	@echo "... Exp2/exp2.s"
 .PHONY : help
 
 
