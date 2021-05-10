@@ -1,10 +1,9 @@
 //
 // Created by 张运宸 on 2021/5/10.
 //
-
 #include <stdio.h>
 #include <pthread.h>
-#include <zconf.h>
+#include <unistd.h>
 
 pthread_mutex_t _5_chopsticks[5];
 
@@ -32,7 +31,6 @@ _Noreturn void* eat_and_think(const int *arg){
         pthread_mutex_unlock(&_5_chopsticks[rigth]);
     }
 }
-
 
 int main(){
     pthread_t philosopher_t[5];
