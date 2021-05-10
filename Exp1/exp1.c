@@ -1,5 +1,6 @@
 //
 // Created by 张运宸 on 2021/5/10.
+// The Philosopher's Dining Problem
 //
 #include <stdio.h>
 #include <pthread.h>

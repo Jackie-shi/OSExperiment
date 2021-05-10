@@ -3,4 +3,4 @@ project(OSExperiment C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(OSExperiment Exp1/exp1.c)
+add_executable(OSExperiment Exp2/exp2.c)
