@@ -78,7 +78,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/zhangyunchen/CLionProjects/OSExperiment/main.c">
+		<Unit filename="/Users/zhangyunchen/CLionProjects/OSExperiment/Exp1/exp1.c">
 			<Option target="OSExperiment"/>
 		</Unit>
 		<Unit filename="/Users/zhangyunchen/CLionProjects/OSExperiment/CMakeLists.txt">
