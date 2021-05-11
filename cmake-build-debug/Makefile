@@ -150,32 +150,32 @@ Exp3/exp3.c.s:
 	$(MAKE) -f CMakeFiles/OSExperiment.dir/build.make CMakeFiles/OSExperiment.dir/Exp3/exp3.c.s
 .PHONY : Exp3/exp3.c.s
 
-Exp6/exp5.o: Exp6/exp5.c.o
+Exp6/exp6.o: Exp6/exp6.c.o
 
-.PHONY : Exp6/exp5.o
+.PHONY : Exp6/exp6.o
 
 # target to build an object file
-Exp6/exp5.c.o:
-	$(MAKE) -f CMakeFiles/OSExperiment.dir/build.make CMakeFiles/OSExperiment.dir/Exp6/exp5.c.o
-.PHONY : Exp6/exp5.c.o
+Exp6/exp6.c.o:
+	$(MAKE) -f CMakeFiles/OSExperiment.dir/build.make CMakeFiles/OSExperiment.dir/Exp6/exp6.c.o
+.PHONY : Exp6/exp6.c.o
 
-Exp6/exp5.i: Exp6/exp5.c.i
+Exp6/exp6.i: Exp6/exp6.c.i
 
-.PHONY : Exp6/exp5.i
+.PHONY : Exp6/exp6.i
 
 # target to preprocess a source file
-Exp6/exp5.c.i:
-	$(MAKE) -f CMakeFiles/OSExperiment.dir/build.make CMakeFiles/OSExperiment.dir/Exp6/exp5.c.i
-.PHONY : Exp6/exp5.c.i
+Exp6/exp6.c.i:
+	$(MAKE) -f CMakeFiles/OSExperiment.dir/build.make CMakeFiles/OSExperiment.dir/Exp6/exp6.c.i
+.PHONY : Exp6/exp6.c.i
 
-Exp6/exp5.s: Exp6/exp5.c.s
+Exp6/exp6.s: Exp6/exp6.c.s
 
-.PHONY : Exp6/exp5.s
+.PHONY : Exp6/exp6.s
 
 # target to generate assembly for a file
-Exp6/exp5.c.s:
-	$(MAKE) -f CMakeFiles/OSExperiment.dir/build.make CMakeFiles/OSExperiment.dir/Exp6/exp5.c.s
-.PHONY : Exp6/exp5.c.s
+Exp6/exp6.c.s:
+	$(MAKE) -f CMakeFiles/OSExperiment.dir/build.make CMakeFiles/OSExperiment.dir/Exp6/exp6.c.s
+.PHONY : Exp6/exp6.c.s
 
 # Help Target
 help:
@@ -189,9 +189,9 @@ help:
 	@echo "... Exp3/exp3.o"
 	@echo "... Exp3/exp3.i"
 	@echo "... Exp3/exp3.s"
-	@echo "... Exp6/exp5.o"
-	@echo "... Exp6/exp5.i"
-	@echo "... Exp6/exp5.s"
+	@echo "... Exp6/exp6.o"
+	@echo "... Exp6/exp6.i"
+	@echo "... Exp6/exp6.s"
 .PHONY : help
 
 

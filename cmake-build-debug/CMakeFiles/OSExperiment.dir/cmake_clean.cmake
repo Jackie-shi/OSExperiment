@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/OSExperiment.dir/Exp3/exp3.c.o"
-  "CMakeFiles/OSExperiment.dir/Exp6/exp5.c.o"
+  "CMakeFiles/OSExperiment.dir/Exp6/exp6.c.o"
   "OSExperiment"
   "OSExperiment.pdb"
 )
