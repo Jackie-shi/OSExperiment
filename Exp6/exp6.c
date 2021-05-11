@@ -55,10 +55,12 @@ int dir2dir(char *source_path, char *destination_path){
     char source_buffer[4096], destination_buffer[4096]; // 文件路径最大长度
     source_dirent_pointer = readdir(source_dir);
     while (NULL != source_dirent_pointer) {
+        if (source_dirent_pointer->d_name[0] != '.') {
+            printf("%s\n", source_dirent_pointer->d_name);
             sprintf(source_buffer, "%s/%s", source_path, source_dirent_pointer->d_name);
             // 获取文件属性
             if (-1 == lstat(source_buffer, &source_stat)) {
-                printf("error111!");
+                printf("error111!\n");
                 exit(EXIT_FAILURE);
             }
             sprintf(destination_buffer, "%s/%s", destination_path, source_dirent_pointer->d_name);
@@ -69,6 +71,7 @@ int dir2dir(char *source_path, char *destination_path){
                 dir2dir(source_buffer, destination_buffer); // 递归调用，处理文件树
             } else {
                 file2file(source_buffer, destination_buffer, &source_stat);
+            }
         }
         source_dirent_pointer = readdir(source_dir);
     }
