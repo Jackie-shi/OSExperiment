@@ -78,9 +78,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/zhangyunchen/CLionProjects/OSExperiment/Exp3/exp3.c">
-			<Option target="OSExperiment"/>
-		</Unit>
 		<Unit filename="/Users/zhangyunchen/CLionProjects/OSExperiment/Exp6/exp6.c">
 			<Option target="OSExperiment"/>
 		</Unit>

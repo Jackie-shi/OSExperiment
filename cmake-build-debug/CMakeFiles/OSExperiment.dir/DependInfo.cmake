@@ -4,7 +4,6 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/zhangyunchen/CLionProjects/OSExperiment/Exp3/exp3.c" "/Users/zhangyunchen/CLionProjects/OSExperiment/cmake-build-debug/CMakeFiles/OSExperiment.dir/Exp3/exp3.c.o"
   "/Users/zhangyunchen/CLionProjects/OSExperiment/Exp6/exp6.c" "/Users/zhangyunchen/CLionProjects/OSExperiment/cmake-build-debug/CMakeFiles/OSExperiment.dir/Exp6/exp6.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")

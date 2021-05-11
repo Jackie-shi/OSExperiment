@@ -123,33 +123,6 @@ OSExperiment/fast:
 	$(MAKE) -f CMakeFiles/OSExperiment.dir/build.make CMakeFiles/OSExperiment.dir/build
 .PHONY : OSExperiment/fast
 
-Exp3/exp3.o: Exp3/exp3.c.o
-
-.PHONY : Exp3/exp3.o
-
-# target to build an object file
-Exp3/exp3.c.o:
-	$(MAKE) -f CMakeFiles/OSExperiment.dir/build.make CMakeFiles/OSExperiment.dir/Exp3/exp3.c.o
-.PHONY : Exp3/exp3.c.o
-
-Exp3/exp3.i: Exp3/exp3.c.i
-
-.PHONY : Exp3/exp3.i
-
-# target to preprocess a source file
-Exp3/exp3.c.i:
-	$(MAKE) -f CMakeFiles/OSExperiment.dir/build.make CMakeFiles/OSExperiment.dir/Exp3/exp3.c.i
-.PHONY : Exp3/exp3.c.i
-
-Exp3/exp3.s: Exp3/exp3.c.s
-
-.PHONY : Exp3/exp3.s
-
-# target to generate assembly for a file
-Exp3/exp3.c.s:
-	$(MAKE) -f CMakeFiles/OSExperiment.dir/build.make CMakeFiles/OSExperiment.dir/Exp3/exp3.c.s
-.PHONY : Exp3/exp3.c.s
-
 Exp6/exp6.o: Exp6/exp6.c.o
 
 .PHONY : Exp6/exp6.o
@@ -186,9 +159,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... OSExperiment"
-	@echo "... Exp3/exp3.o"
-	@echo "... Exp3/exp3.i"
-	@echo "... Exp3/exp3.s"
 	@echo "... Exp6/exp6.o"
 	@echo "... Exp6/exp6.i"
 	@echo "... Exp6/exp6.s"

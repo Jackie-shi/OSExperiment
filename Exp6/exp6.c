@@ -54,24 +54,23 @@ int dir2dir(char *source_path, char *destination_path){
     memset(&source_stat, 0, sizeof(source_dir));
     char source_buffer[4096], destination_buffer[4096]; // 文件路径最大长度
     source_dirent_pointer = readdir(source_dir);
-    while (NULL != source_dirent_pointer){
-        sprintf(source_buffer, "%s/%s", source_path, source_dirent_pointer->d_name);
-        // 获取文件属性
-        int temp_stat = lstat(source_buffer, &source_stat);
-        if (-1 == temp_stat){
-            printf("error!");
-            exit(EXIT_FAILURE);
-        }
-        sprintf(destination_buffer, "%s/%s", destination_path, source_dirent_pointer->d_name);
-        if (S_ISDIR(source_stat.st_mode)){
-            if (-1 == access(destination_buffer, F_OK)){
-                mkdir(destination_buffer, source_stat.st_mode);
+    while (NULL != source_dirent_pointer) {
+            sprintf(source_buffer, "%s/%s", source_path, source_dirent_pointer->d_name);
+            // 获取文件属性
+            if (-1 == lstat(source_buffer, &source_stat)) {
+                printf("error111!");
+                exit(EXIT_FAILURE);
             }
-            dir2dir(source_buffer, destination_buffer); // 递归调用，处理文件树
+            sprintf(destination_buffer, "%s/%s", destination_path, source_dirent_pointer->d_name);
+            if (S_ISDIR(source_stat.st_mode)) {
+                if (-1 == access(destination_buffer, F_OK)) {
+                    mkdir(destination_buffer, source_stat.st_mode);
+                }
+                dir2dir(source_buffer, destination_buffer); // 递归调用，处理文件树
+            } else {
+                file2file(source_buffer, destination_buffer, &source_stat);
         }
-        else {
-            file2file(source_buffer, destination_buffer, &source_stat);
-        }
+        source_dirent_pointer = readdir(source_dir);
     }
     closedir(source_dir);
     return 0;
@@ -110,8 +109,8 @@ int main(int argc, char *argv[]){
                     char *scr_pointer;
                     len = strlen(argv[1]);
                     scr_pointer = argv[1] + (len - 1);
-                    while (scr_pointer >= argv[1] && *scr_pointer != "/"){
-                        scr_pointer --;
+                    while (scr_pointer >= argv[1] && *scr_pointer != '/'){
+                        scr_pointer--;
                     }
                     scr_pointer ++;
                     memset(buffer, 0, 4096);
@@ -119,10 +118,12 @@ int main(int argc, char *argv[]){
                     if (access(buffer, F_OK) != 0){
                         ret = mkdir(buffer, 0755); //mkdir 默认755
                     }
-                    ret = dir2dir(argv[1], argv[2]);
+                    ret = dir2dir(argv[1], buffer);
                     return ret;
                 }
             }
+            ret = dir2dir(argv[1], argv[2]);
+            return ret;
         }
         else {
             if (0 == access(argv[2], F_OK)){
@@ -135,7 +136,7 @@ int main(int argc, char *argv[]){
                     char *scr_pointer;
                     len = strlen(argv[1]);
                     scr_pointer = argv[1] + (len - 1);
-                    while (scr_pointer >= argv[1] && *scr_pointer != "/"){
+                    while (scr_pointer >= argv[1] && *scr_pointer != '/'){
                         scr_pointer--;
                     }
                     scr_pointer++;
@@ -155,16 +156,17 @@ int main(int argc, char *argv[]){
                 ret = mkdir(argv[2], 0755);
                 len = strlen(argv[1]);
                 src_pointer = argv[1] + (len - 1);
-                while (src_pointer >= argv[1] && *src_pointer != "/"){
+                while (src_pointer >= argv[1] && *src_pointer != '/'){
                     src_pointer--;
                 }
                 src_pointer++;
                 memset(buffer, 0, 4096);
                 sprintf(buffer, "%s/%s", argv[2], src_pointer);
-                ret = file2file(argv[1], argv[2], &destination_stat);
+                ret = file2file(argv[1], buffer, &destination_stat);
                 return ret;
             }
         }
     }
-    return -1;
 }
+
+
