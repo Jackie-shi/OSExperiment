@@ -85,6 +85,7 @@ int dir2dir(char *source_path, char *destination_path){
 }
 
 int main(int argc, char *argv[]){
+    // 使用lstat获取文件状态，判断为文件还是文件夹
     struct stat source_stat, destination_stat;
     char buffer[4096];
     int ret = 0;
@@ -93,12 +94,14 @@ int main(int argc, char *argv[]){
         exit(EXIT_FAILURE);
     }
     else{
+        // 获取源文件状态
         if (-1 == lstat(argv[1], &source_stat)){
             printf("error!");
             exit(EXIT_FAILURE);
         }
+        // dir->dir
         if (S_ISDIR(source_stat.st_mode)){
-            if (access(argv[2], F_OK) != 0){
+            if (0 != access(argv[2], F_OK)){
                 // 没有目标文件夹的情况
                 ret = mkdir(argv[2], source_stat.st_mode);
             }
@@ -112,7 +115,7 @@ int main(int argc, char *argv[]){
                     exit(EXIT_FAILURE);
                 }
                 else{
-                    // 获取路径最后一个字，倒序找出文件名
+                    // 获取源文件夹文件名
                     int len;
                     char *scr_pointer;
                     len = strlen(argv[1]);
@@ -133,7 +136,9 @@ int main(int argc, char *argv[]){
             ret = dir2dir(argv[1], argv[2]);
             return ret;
         }
+        // source_file->destination_dir/file
         else {
+            // 源路径为文件的情况
             if (0 == access(argv[2], F_OK)){
                 if (-1 == lstat(argv[2], &destination_stat)){
                     printf("error!");
