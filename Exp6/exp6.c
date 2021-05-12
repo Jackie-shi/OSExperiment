@@ -11,6 +11,31 @@
 #include <dirent.h>
 #include <sys/stat.h>
 
+int file2file(char *source_file, char *destination_file, struct stat *pointer_stat);
+int dir2dir(char *source_path, char *destination_path);
+int cp2where(char *source_path, char *destination_path, struct stat source_stat, struct stat destination_stat);
+
+int main(int argc, char *argv[]){
+    // 使用lstat获取文件状态，判断为文件还是文件夹
+    struct stat source_stat, destination_stat;
+    int ret = 0;
+    if (argc != 3){
+        printf("error!");
+        exit(EXIT_FAILURE);
+    }
+    else{
+        // 获取源文件状态
+        if (-1 == lstat(argv[1], &source_stat)){
+            printf("error!");
+            exit(EXIT_FAILURE);
+        }
+        ret = cp2where(argv[1], argv[2], source_stat, destination_stat);
+        return ret;
+    }
+}
+
+
+
 int file2file(char *source_file, char *destination_file, struct stat *pointer_stat){
     int source_file_description = open(source_file, O_RDONLY);
     if (-1 == source_file_description){
@@ -21,7 +46,7 @@ int file2file(char *source_file, char *destination_file, struct stat *pointer_st
             destination_file,
             O_WRONLY | O_CREAT | O_TRUNC,
             pointer_stat->st_mode
-            );
+    );
     if (-1 == destination_file_description){
         printf("error!");
         exit(EXIT_FAILURE);
@@ -45,6 +70,8 @@ int file2file(char *source_file, char *destination_file, struct stat *pointer_st
     }
     return 0;
 }
+
+
 
 int dir2dir(char *source_path, char *destination_path){
     DIR *source_dir = NULL;
@@ -84,102 +111,86 @@ int dir2dir(char *source_path, char *destination_path){
     return 0;
 }
 
-int main(int argc, char *argv[]){
-    // 使用lstat获取文件状态，判断为文件还是文件夹
-    struct stat source_stat, destination_stat;
-    char buffer[4096];
-    int ret = 0;
-    if (argc != 3){
-        printf("error!");
-        exit(EXIT_FAILURE);
-    }
-    else{
-        // 获取源文件状态
-        if (-1 == lstat(argv[1], &source_stat)){
-            printf("error!");
-            exit(EXIT_FAILURE);
+
+
+int cp2where(char *source_path, char *destination_path, struct stat source_stat, struct stat destination_stat){
+    if (S_ISDIR(source_stat.st_mode)){
+        if (0 != access(destination_path, F_OK)){
+            mkdir(destination_path, source_stat.st_mode);
         }
-        // dir->dir
-        if (S_ISDIR(source_stat.st_mode)){
-            if (0 != access(argv[2], F_OK)){
-                // 没有目标文件夹的情况
-                ret = mkdir(argv[2], source_stat.st_mode);
+        else{
+            if (-1 == lstat(destination_path, &destination_stat)){
+                printf("error!");
+                exit(EXIT_FAILURE);
             }
-            else{
-                if (-1 == lstat(argv[2], &destination_stat)){
-                    printf("error!");
-                    exit(EXIT_FAILURE);
-                }
-                if (!S_ISDIR(destination_stat.st_mode)){
-                    printf("destination is exist file");
-                    exit(EXIT_FAILURE);
-                }
-                else{
-                    // 获取源文件夹文件名
-                    int len;
-                    char *scr_pointer;
-                    len = strlen(argv[1]);
-                    scr_pointer = argv[1] + (len - 1);
-                    while (scr_pointer >= argv[1] && *scr_pointer != '/'){
-                        scr_pointer--;
-                    }
-                    scr_pointer ++;
-                    memset(buffer, 0, 4096);
-                    sprintf(buffer, "%s/%s", argv[2], scr_pointer);
-                    if (access(buffer, F_OK) != 0){
-                        ret = mkdir(buffer, 0755); //mkdir 默认755
-                    }
-                    ret = dir2dir(argv[1], buffer);
-                    return ret;
-                }
-            }
-            ret = dir2dir(argv[1], argv[2]);
-            return ret;
-        }
-        // source_file->destination_dir/file
-        else {
-            // 源路径为文件的情况
-            if (0 == access(argv[2], F_OK)){
-                if (-1 == lstat(argv[2], &destination_stat)){
-                    printf("error!");
-                    exit(EXIT_FAILURE);
-                }
-                if (S_ISDIR(destination_stat.st_mode)){
-                    int len;
-                    char *scr_pointer;
-                    len = strlen(argv[1]);
-                    scr_pointer = argv[1] + (len - 1);
-                    while (scr_pointer >= argv[1] && *scr_pointer != '/'){
-                        scr_pointer--;
-                    }
-                    scr_pointer++;
-                    memset(buffer, 0, 4096);
-                    sprintf(buffer, "%s/%s", argv[2], scr_pointer);
-                    ret = file2file(argv[1], buffer, &source_stat);
-                    return ret;
-                }
-                else{
-                    ret = file2file(argv[1], argv[2], &source_stat);
-                    return ret;
-                }
+            if (!S_ISDIR((destination_stat.st_mode))){
+                printf("destination is existed file");
+                exit(EXIT_FAILURE);
             }
             else{
                 int len;
                 char *src_pointer;
-                ret = mkdir(argv[2], 0755);
-                len = strlen(argv[1]);
-                src_pointer = argv[1] + (len - 1);
-                while (src_pointer >= argv[1] && *src_pointer != '/'){
+                char buffer[4096];
+                len = strlen(source_path);
+                src_pointer = source_path + (len - 1);
+                // 通过数组地址前移
+                while (src_pointer >= source_path && *src_pointer != '/'){
                     src_pointer--;
                 }
                 src_pointer++;
                 memset(buffer, 0, 4096);
-                sprintf(buffer, "%s/%s", argv[2], src_pointer);
-                ret = file2file(argv[1], buffer, &destination_stat);
-                return ret;
+                sprintf(buffer, "%s/%s", destination_path, src_pointer);
+                if (access(buffer, F_OK) != 0){
+                    mkdir(buffer, 0755);
+                }
+                dir2dir(source_path, buffer);
+                return 0;
             }
+        }
+        dir2dir(source_path, destination_path);
+        return 0;
+    }
+    else{
+        if (0 == access(destination_path, F_OK)){
+            if (-1 == lstat(destination_path, &destination_stat)){
+                printf("error!");
+                exit(EXIT_FAILURE);
+            }
+            if (S_ISDIR(destination_stat.st_mode)){
+                int len;
+                char *src_pointer;
+                char buffer[4096];
+                len = strlen(source_path);
+                src_pointer = source_path + (len - 1);
+                while (src_pointer >= source_path && *src_pointer != '/'){
+                    src_pointer--;
+                }
+                src_pointer++;
+                memset(buffer, 0, 4096);
+                sprintf(buffer, "%s/%s", destination_path, src_pointer);
+                file2file(source_path, buffer, &source_stat);
+                return 0;
+            }
+            else{
+                file2file(source_path, destination_path, &source_stat);
+                return 0;
+            }
+        }
+        else{
+            int len;
+            char *src_pointer;
+            char buffer[4096];
+            mkdir(destination_path, 0755);
+            len = strlen(source_path);
+            src_pointer = source_path + (len - 1);
+            while (src_pointer >= source_path && *src_pointer != '/'){
+                src_pointer--;
+            }
+            src_pointer++;
+            memset(buffer, 0, 4096);
+            sprintf(buffer, "%s/%s", destination_path, src_pointer);
+            file2file(source_path, buffer, &destination_stat);
+            return 0;
         }
     }
 }
-
-
