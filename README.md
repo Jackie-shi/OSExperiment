@@ -9,4 +9,4 @@ Exp4: File Status Test
 
 Exp5: Monitor User
 
-Exp6: cp -r achieved by C 还不能复制隐藏文件，如.ssh，呜呜。
+Exp6: cp -r achieved by C

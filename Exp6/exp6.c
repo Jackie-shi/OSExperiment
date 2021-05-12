@@ -53,9 +53,15 @@ int dir2dir(char *source_path, char *destination_path){
     source_dir = opendir(source_path);
     memset(&source_stat, 0, sizeof(source_dir));
     char source_buffer[4096], destination_buffer[4096]; // 文件路径最大长度
-    source_dirent_pointer = readdir(source_dir);
-    while (NULL != source_dirent_pointer) {
-        if (source_dirent_pointer->d_name[0] != '.') {
+    while ((source_dirent_pointer = readdir(source_dir)) != NULL) {
+        // 竟然写了一堆if,[裂开]
+        if (source_dirent_pointer->d_name[0] == '.' && source_dirent_pointer->d_name[1] == 0){
+            continue;
+        }
+        if (source_dirent_pointer->d_name[0] == '.' && source_dirent_pointer->d_name[1] == '.'){
+            continue;
+        }
+        if (source_dirent_pointer->d_name[0] != '.' || (source_dirent_pointer->d_name[0] == '.' && source_dirent_pointer->d_name[1] != 0)) {
             printf("%s\n", source_dirent_pointer->d_name);
             sprintf(source_buffer, "%s/%s", source_path, source_dirent_pointer->d_name);
             // 获取文件属性
@@ -73,7 +79,6 @@ int dir2dir(char *source_path, char *destination_path){
                 file2file(source_buffer, destination_buffer, &source_stat);
             }
         }
-        source_dirent_pointer = readdir(source_dir);
     }
     closedir(source_dir);
     return 0;
